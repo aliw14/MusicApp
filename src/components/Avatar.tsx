@@ -1,4 +1,11 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
 import Ring from '../../assets/vectors/ring.svg';
 import { colors } from '../theme/colors';
@@ -7,11 +14,12 @@ interface IAvatar {
   title: string;
   caption: string;
   url?: string;
+  style?: StyleProp<ViewStyle>;
 }
 
-export const Avatar: React.FC<IAvatar> = ({ caption, url, title }) => {
+export const Avatar: React.FC<IAvatar> = ({ caption, url, title, style }) => {
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, style]}>
       {url ? (
         <Image
           style={styles.image}

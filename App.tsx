@@ -27,7 +27,7 @@ export default function App() {
   return (
     <SafeAreaProvider style={styles.container} onLayout={onLayoutRootView}>
       <StatusBar style="light" />
-      <SafeAreaView>
+      <SafeAreaView style={styles.safe}>
         <HomeScreen />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -37,5 +37,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.dark,
+  },
+  safe: {
+    flex: 1,
   },
 });
