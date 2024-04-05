@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Keyboard,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import React, { useState } from 'react';
 import { Avatar } from '../components/Avatar';
@@ -16,12 +17,32 @@ import SearchVector from '../../assets/vectors/search.svg';
 import { activeIndex, standardHitSlop } from '../theme/standard';
 import { colors } from '../theme/colors';
 import { Input } from '../components/Input';
+import { Card, ICard } from '../components/Card';
+import { songs } from '../mocks/songs.mock';
 
 export const HomeScreen = () => {
   const [value, setValue] = useState<string>('');
 
+  const renderCards = ({ item, index }: { item: ICard; index: number }) => {
+    return <Card key={index} title={item.title} url={item.url} />;
+  };
+
+  const renderVerticalCards = ({
+    item,
+    index,
+  }: {
+    item: ICard;
+    index: number;
+  }) => {
+    return <Card size="s" key={index} horizontal {...item} />;
+  };
+
   return (
-    <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="handled">
+    <ScrollView
+      indicatorStyle="white"
+      style={styles.scrollView}
+      keyboardShouldPersistTaps="handled"
+    >
       <View style={styles.root}>
         <Header
           left={
@@ -55,13 +76,42 @@ export const HomeScreen = () => {
             setValue={setValue}
           />
         </View>
-        <Input
-          placeholder="Search Music"
-          placeholderTextColor={colors.gray}
-          inputStyle={{ flexGrow: 0 }}
-          value={value}
-          icon={<SearchVector color={colors.lightGray} />}
-          setValue={setValue}
+        <View>
+          <Text numberOfLines={2} style={[styles.title, styles.cardHeader]}>
+            Recently Played
+          </Text>
+          {/* <ScrollView
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            style={{ marginTop: 16 }}
+            contentContainerStyle={{ gap: 16 }}
+          >
+            {songs.map(renderCards)}
+          </ScrollView> */}
+
+          <FlatList
+            data={songs}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginTop: 16 }}
+            contentContainerStyle={{ gap: 16 }}
+            // renderItem={({ item }) => (
+            //   <Card title={item.title} url={item.url} />
+            // )}
+            renderItem={renderCards}
+          />
+        </View>
+
+        <Text numberOfLines={2} style={[styles.title, styles.cardHeader]}>
+          Recently Played
+        </Text>
+        {/* <View style={styles.cards}>{songs.map(renderVerticalCards)}</View> */}
+        <FlatList
+          data={songs}
+          removeClippedSubviews
+          contentContainerStyle={styles.cards}
+          scrollEnabled={false}
+          renderItem={renderVerticalCards}
         />
       </View>
     </ScrollView>
@@ -73,6 +123,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
   },
+  scrollView: {
+    flex: 1,
+  },
   search: {
     marginTop: 24,
     flexDirection: 'row',
@@ -81,8 +134,16 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Nunito-Bold',
     fontSize: 26,
-    // lineHeight: 20,
     width: '50%',
     color: colors.white,
+  },
+  cards: {
+    marginTop: 18,
+    gap: 17,
+  },
+  cardHeader: {
+    width: undefined,
+    fontSize: 22,
+    marginTop: 44,
   },
 });
