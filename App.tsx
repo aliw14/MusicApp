@@ -5,6 +5,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { HomeScreen } from './src/screens/Home.Screen';
 import { colors } from './src/theme/colors';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { MusicScreen } from './src/screens/Music.Screen';
+import { FavoriteScreen } from './src/screens/Favorite.Screen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,7 +30,9 @@ export default function App() {
     <SafeAreaProvider style={styles.container} onLayout={onLayoutRootView}>
       <StatusBar style="light" />
       <SafeAreaView style={styles.safe}>
-        <HomeScreen />
+        {/* <HomeScreen /> */}
+        <MusicScreen />
+        {/* <FavoriteScreen /> */}
       </SafeAreaView>
     </SafeAreaProvider>
   );
