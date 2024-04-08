@@ -1,5 +1,6 @@
 import {
   Image,
+  ImageStyle,
   Pressable,
   StyleProp,
   StyleSheet,
@@ -19,6 +20,7 @@ export interface ICard {
   size?: 's' | 'm' | 'l';
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
 }
 
 export const Card: React.FC<ICard> = ({
@@ -26,6 +28,7 @@ export const Card: React.FC<ICard> = ({
   description,
   horizontal,
   onPress,
+  imageStyle,
   singer,
   size = 'm',
   style,
@@ -42,7 +45,7 @@ export const Card: React.FC<ICard> = ({
         source={{
           uri: url,
         }}
-        style={[styles[size], styles.image]}
+        style={[styles[size], styles.image, imageStyle]}
       />
       {isTextsVisible ? (
         <View style={[styles.texts, horizontal && styles.maxWidth]}>

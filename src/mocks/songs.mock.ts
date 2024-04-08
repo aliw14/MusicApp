@@ -51,4 +51,67 @@ export const songs: ISong[] = [
     gmail: 'sarwarmusic@gmail.com',
     subscription: null,
   },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',
+    title: 'Lionel Messi',
+    singer: 'Argentina',
+    description:
+      'Lionel Messi playing for Al Nassr FC against Persepolis, September 2023',
+    gmail: 'sarwarmusic@gmail.com',
+    subscription: null,
+  },
 ];

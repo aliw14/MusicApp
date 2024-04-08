@@ -30,8 +30,8 @@ export default function App() {
     <SafeAreaProvider style={styles.container} onLayout={onLayoutRootView}>
       <StatusBar style="light" />
       <SafeAreaView style={styles.safe}>
-        {/* <HomeScreen /> */}
-        <MusicScreen />
+        <HomeScreen />
+        {/* <MusicScreen /> */}
         {/* <FavoriteScreen /> */}
       </SafeAreaView>
     </SafeAreaProvider>
