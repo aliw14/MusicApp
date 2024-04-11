@@ -122,4 +122,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 10,
   },
+  singerContainer: {
+    // Define styles for singer container if needed
+  },
 });
+

@@ -1,35 +1,40 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
-import React, { useRef, useState } from 'react';
-import { Header } from '../components/Header';
-import LikeVector from '../../assets/vectors/like.svg';
-import BackVector from '../../assets/vectors/back.svg';
-import ShuffleVector from '../../assets/vectors/shuffle.svg';
-import PauseVector from '../../assets/vectors/pause.svg';
-import RepeatVector from '../../assets/vectors/repeat.svg';
-import SkipBackVector from '../../assets/vectors/skip_back.svg';
-import SkipForwardVector from '../../assets/vectors/skip_forward.svg';
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import React, { useRef, useState } from "react";
+import { Header } from "../components/Header";
+import LikeVector from "../../assets/vectors/like.svg";
+import BackVector from "../../assets/vectors/back.svg";
+import ShuffleVector from "../../assets/vectors/shuffle.svg";
+import PauseVector from "../../assets/vectors/pause.svg";
+import RepeatVector from "../../assets/vectors/repeat.svg";
+import SkipBackVector from "../../assets/vectors/skip_back.svg";
+import SkipForwardVector from "../../assets/vectors/skip_forward.svg";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import { colors } from '../theme/colors';
-import { songs } from '../mocks/songs.mock';
-import { ProgressBar } from '../components/ProgressBar';
+import { colors } from "../theme/colors";
+import { songs } from "../mocks/songs.mock";
+import { ProgressBar } from "../components/ProgressBar";
 
-const HeaderLeft = () => {
-  return (
-    <Pressable onPress={() => console.log('-->')}>
-      <BackVector color={colors.white} />
-    </Pressable>
-  );
-};
+interface MusicScreenProps {
+  navigation: any;
+}
 
 const HeaderRight = () => {
   return (
-    <Pressable onPress={() => console.log('pressed')}>
+    <Pressable onPress={() => console.log("pressed")}>
       <LikeVector color={colors.gray} />
     </Pressable>
   );
 };
 
-export const MusicScreen: React.FC = () => {
+export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
+  const HeaderLeft = () => {
+    return (
+      <Pressable onPress={() => navigation.navigate("Home")}>
+        <BackVector color={colors.white} />
+      </Pressable>
+    );
+  };
   const audioPlayer = useRef<null>(null);
 
   const [play, setPlay] = useState<boolean>(false);
@@ -83,8 +88,8 @@ export const MusicScreen: React.FC = () => {
           <View
             style={{
               height: 81,
-              width: '100%',
-              backgroundColor: 'grey',
+              width: "100%",
+              backgroundColor: "grey",
             }}
           />
         </View>
@@ -103,15 +108,15 @@ const styles = StyleSheet.create({
     // padding: 16,
     width: 75,
     height: 75,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: colors.primary,
     borderRadius: 99,
   },
   buttons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   main: {
     flex: 1,
@@ -122,27 +127,27 @@ const styles = StyleSheet.create({
   },
   controllers: {
     flexGrow: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingBottom: 12,
   },
   image: {
     height: 319,
-    width: '100%',
+    width: "100%",
     borderRadius: 36,
   },
   imageTexts: {
     gap: 7,
   },
   title: {
-    fontFamily: 'Nunito-Regular',
+    fontFamily: "Nunito-Regular",
     fontSize: 24,
     color: colors.white,
-    textAlign: 'center',
+    textAlign: "center",
   },
   singer: {
-    fontFamily: 'Nunito-Regular',
+    fontFamily: "Nunito-Regular",
     fontSize: 18,
     color: colors.gray,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
