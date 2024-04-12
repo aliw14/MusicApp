@@ -5,32 +5,35 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-} from 'react-native';
-import React, { useEffect } from 'react';
-import { Header } from '../components/Header';
-import BackVector from '../../assets/vectors/back.svg';
-import { colors } from '../theme/colors';
-import { songs } from '../mocks/songs.mock';
-import { Card } from '../components/Card';
-import { CommonStyles } from '../theme/common';
-import { screenWidth } from '../theme/consts.styles';
-import { FlashList } from '@shopify/flash-list';
+} from "react-native";
+import React, { useEffect } from "react";
+import { Header } from "../components/Header";
+import BackVector from "../../assets/vectors/back.svg";
+import { colors } from "../theme/colors";
+import { songs } from "../mocks/songs.mock";
+import { Card } from "../components/Card";
+import { CommonStyles } from "../theme/common";
+import { screenWidth } from "../theme/consts.styles";
+import { FlashList } from "@shopify/flash-list";
 
-const HeaderLeft = () => {
-  return (
-    <Pressable onPress={() => console.log('-->')}>
-      <BackVector color={colors.white} />
-    </Pressable>
-  );
-};
+interface MusicScreenProps {
+  navigation: any;
+}
 
-export const FavoriteScreen = () => {
+export const FavoriteScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
+  const HeaderLeft = () => {
+    return (
+      <Pressable onPress={() => navigation.navigate("MusicScreen")}>
+        <BackVector color={colors.white} />
+      </Pressable>
+    );
+  };
   const renderItems = ({ item }: { item: any }) => {
     return (
       <Card
         size="l"
         url={item.url}
-        style={{ width: '100%' }}
+        style={{ width: "100%" }}
         imageStyle={{ width: cardWidth }}
       />
     );
@@ -47,12 +50,12 @@ export const FavoriteScreen = () => {
             <Text style={styles.text}>{songs[0].gmail}</Text>
           </View>
           <Text style={[styles.text, styles.member]}>
-            {songs[0].subscription ?? 'Not subscribed'}
+            {songs[0].subscription ?? "Not subscribed"}
           </Text>
           <Text style={styles.text}>{songs[0].description}</Text>
         </View>
       </View>
-      <View style={{ flex: 1, width: '100%' }}>
+      <View style={{ flex: 1, width: "100%" }}>
         <Text style={styles.singer}>Favourite Album</Text>
         <FlashList
           estimatedItemSize={50}
@@ -60,7 +63,7 @@ export const FavoriteScreen = () => {
           renderItem={({ item: { url } }) => <Card size="l" url={url} />}
           horizontal
           ItemSeparatorComponent={() => (
-            <View style={{ width: 9, height: '100%' }} />
+            <View style={{ width: 9, height: "100%" }} />
           )}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.singerContainer}
@@ -89,10 +92,11 @@ const cardWidth = Math.floor((screenWidth - screenPaddingSize - 18) / 3);
 
 const styles = StyleSheet.create({
   root: {
+    backgroundColor: colors.dark,
     paddingHorizontal: 17,
     gap: 32,
-    minHeight: '100%',
-    minWidth: '100%',
+    minHeight: "100%",
+    minWidth: "100%",
     paddingBottom: 40,
   },
   cardTitle: {
@@ -103,18 +107,18 @@ const styles = StyleSheet.create({
     marginBottom: 13,
   },
   singer: {
-    fontFamily: 'Nunito-Regular',
+    fontFamily: "Nunito-Regular",
     fontSize: 18,
     color: colors.white,
     marginBottom: 24,
   },
   text: {
-    fontFamily: 'Nunito-Regular',
+    fontFamily: "Nunito-Regular",
     fontSize: 16,
     color: colors.gray,
   },
   info: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 15,
   },
   image: {
@@ -122,8 +126,5 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 10,
   },
-  singerContainer: {
-    // Define styles for singer container if needed
-  },
+  singerContainer: {},
 });
-

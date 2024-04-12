@@ -9,9 +9,12 @@ import { MusicScreen } from "./src/screens/Music.Screen";
 import { FavoriteScreen } from "./src/screens/Favorite.Screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createStackNavigator();
-SplashScreen.preventAutoHideAsync();
+const Tab = createBottomTabNavigator();
+
+// SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -19,23 +22,35 @@ export default function App() {
     "Nunito-Bold": require("./assets/fonts/Nunito-SemiBold.ttf"), // 600
   });
 
-  const onLayoutRootView = async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  };
+  // const onLayoutRootView = async () => {
+  //   if (fontsLoaded || fontError) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // };
 
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-
+  // if (!fontsLoaded && !fontError) {
+  //   return null;
+  // }
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Music" component={MusicScreen} />
-        <Stack.Screen name="Favorite" component={FavoriteScreen} />
-      </Stack.Navigator>  
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="MusicScreen" component={MusicScreen} />
+          <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="MusicScreen" component={MusicScreen} />
+          <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

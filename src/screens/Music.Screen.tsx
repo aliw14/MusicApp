@@ -8,8 +8,6 @@ import PauseVector from "../../assets/vectors/pause.svg";
 import RepeatVector from "../../assets/vectors/repeat.svg";
 import SkipBackVector from "../../assets/vectors/skip_back.svg";
 import SkipForwardVector from "../../assets/vectors/skip_forward.svg";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { colors } from "../theme/colors";
 import { songs } from "../mocks/songs.mock";
@@ -18,23 +16,23 @@ import { ProgressBar } from "../components/ProgressBar";
 interface MusicScreenProps {
   navigation: any;
 }
-
-const HeaderRight = () => {
-  return (
-    <Pressable onPress={() => console.log("pressed")}>
-      <LikeVector color={colors.gray} />
-    </Pressable>
-  );
-};
-
 export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
   const HeaderLeft = () => {
     return (
-      <Pressable onPress={() => navigation.navigate("Home")}>
+      <Pressable onPress={() => navigation.navigate("HomeScreen")}>
         <BackVector color={colors.white} />
       </Pressable>
     );
   };
+
+  const HeaderRight = () => {
+    return (
+      <Pressable onPress={() => console.log("pressed")}>
+        <LikeVector color={colors.gray} />
+      </Pressable>
+    );
+  };
+
   const audioPlayer = useRef<null>(null);
 
   const [play, setPlay] = useState<boolean>(false);
@@ -100,6 +98,7 @@ export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   root: {
+    backgroundColor: colors.dark,
     flex: 1,
     paddingHorizontal: 17,
     gap: 32,
