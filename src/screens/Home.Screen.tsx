@@ -17,6 +17,10 @@ import { Card, ICard } from "../components/Card";
 import { songs } from "../mocks/songs.mock";
 import { FlashList } from "@shopify/flash-list";
 import { CommonStyles } from "../theme/common";
+import { Alert, Modal, Pressable } from "react-native";
+
+const showAlert = () =>
+  Alert.alert("Notifications Alert", "Notifications do not work yet");
 
 export const HomeScreen = () => {
   const [value, setValue] = useState<string>("");
@@ -25,6 +29,7 @@ export const HomeScreen = () => {
 
   const renderCards = ({ item, index }: { item: ICard; index: number }) => {
     return (
+      
       <Card
         key={index}
         title={item.title}
@@ -84,7 +89,7 @@ export const HomeScreen = () => {
             <TouchableOpacity
               activeOpacity={activeIndex}
               hitSlop={standardHitSlop}
-              onPress={() => console.log("pressed")}
+              onPress={showAlert}
             >
               <RingVector color={colors.gray} />
             </TouchableOpacity>
@@ -146,6 +151,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
     minHeight: "100%",
+    paddingTop: 46,
   },
   scrollView: {
     flex: 1,
@@ -163,7 +169,6 @@ const styles = StyleSheet.create({
   },
   cards: {
     paddingTop: 18,
-    // gap: 17,
   },
   cardHeader: {
     width: undefined,

@@ -1,55 +1,64 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { HomeScreen } from "./src/screens/Home.Screen";
-import { colors } from "./src/theme/colors";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { MusicScreen } from "./src/screens/Music.Screen";
-import { FavoriteScreen } from "./src/screens/Favorite.Screen";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { HomeScreen } from "./src/screens/Home.Screen";
+import { MusicScreen } from "./src/screens/Music.Screen";
+import { FavoriteScreen } from "./src/screens/Favorite.Screen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { colors } from "./src/theme/colors";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const screenOptions = {
+  tabBarStyle: {
+    backgroundColor: colors.dark,
+  },
+};
 
-// SplashScreen.preventAutoHideAsync();
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="MusicScreen"
+        component={MusicScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FavoriteScreen"
+        component={FavoriteScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
-  const [fontsLoaded, fontError] = useFonts({
-    "Nunito-Regular": require("./assets/fonts/Nunito-Regular.ttf"), // 400
-    "Nunito-Bold": require("./assets/fonts/Nunito-SemiBold.ttf"), // 600
-  });
-
-  // const onLayoutRootView = async () => {
-  //   if (fontsLoaded || fontError) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // };
-
-  // if (!fontsLoaded && !fontError) {
-  //   return null;
-  // }
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="MusicScreen" component={MusicScreen} />
-          <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
+        <Tab.Navigator screenOptions={screenOptions}>
+          <Tab.Screen
+            name="Home"
+            component={HomeStack}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="MusicScreen" component={MusicScreen} />
-          <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
-        </Stack.Navigator>
+          <Tab.Screen
+            name="Music"
+            component={MusicScreen}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="Favorite"
+            component={FavoriteScreen}
+            options={{ headerShown: false }}
+          />
+        </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
   );

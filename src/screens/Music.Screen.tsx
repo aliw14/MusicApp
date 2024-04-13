@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Modal } from "react-native";
 import React, { useRef, useState } from "react";
 import { Header } from "../components/Header";
 import LikeVector from "../../assets/vectors/like.svg";
@@ -52,47 +52,47 @@ export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.root}>
-      <Header
-        left={<HeaderLeft />}
-        right={<HeaderRight />}
-        title="Ophelia by Steven"
-      />
-      <View style={styles.main}>
-        <View style={styles.wrapper}>
-          <Image
-            resizeMode="cover"
-            source={{
-              uri: songs[0].url,
-            }}
-            style={styles.image}
-          />
-          <View style={styles.imageTexts}>
-            <Text style={styles.title}>{songs[0].title}</Text>
-            <Text style={styles.singer}>{songs[0].singer}</Text>
-          </View>
-          <View style={styles.controllers}>
-            <ProgressBar time={185} currentTime={120} />
-            <View style={styles.buttons}>
-              <ShuffleVector color={colors.white} />
-              <SkipBackVector color={colors.white} />
-              <Pressable onPress={onController} style={styles.pause}>
-                {play ? <PauseVector color={colors.white} /> : <LikeVector />}
-              </Pressable>
-              <SkipForwardVector color={colors.white} />
-              <RepeatVector color={colors.white} />
+      <View style={styles.root}>
+        <Header
+          left={<HeaderLeft />}
+          right={<HeaderRight />}
+          title="Ophelia by Steven"
+        />
+        <View style={styles.main}>
+          <View style={styles.wrapper}>
+            <Image
+              resizeMode="cover"
+              source={{
+                uri: songs[0].url,
+              }}
+              style={styles.image}
+            />
+            <View style={styles.imageTexts}>
+              <Text style={styles.title}>{songs[0].title}</Text>
+              <Text style={styles.singer}>{songs[0].singer}</Text>
             </View>
+            <View style={styles.controllers}>
+              <ProgressBar time={185} currentTime={120} />
+              <View style={styles.buttons}>
+                <ShuffleVector color={colors.white} />
+                <SkipBackVector color={colors.white} />
+                <Pressable onPress={onController} style={styles.pause}>
+                  {play ? <PauseVector color={colors.white} /> : <LikeVector />}
+                </Pressable>
+                <SkipForwardVector color={colors.white} />
+                <RepeatVector color={colors.white} />
+              </View>
+            </View>
+            <View
+              style={{
+                height: 81,
+                width: "100%",
+                backgroundColor: "grey",
+              }}
+            />
           </View>
-          <View
-            style={{
-              height: 81,
-              width: "100%",
-              backgroundColor: "grey",
-            }}
-          />
         </View>
       </View>
-    </View>
   );
 };
 
@@ -102,9 +102,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 17,
     gap: 32,
+    paddingTop: 46,
   },
   pause: {
-    // padding: 16,
     width: 75,
     height: 75,
     alignItems: "center",

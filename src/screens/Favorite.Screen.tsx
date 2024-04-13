@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Button,
 } from "react-native";
 import React, { useEffect } from "react";
 import { Header } from "../components/Header";
@@ -15,6 +16,7 @@ import { Card } from "../components/Card";
 import { CommonStyles } from "../theme/common";
 import { screenWidth } from "../theme/consts.styles";
 import { FlashList } from "@shopify/flash-list";
+import { Modal } from "react-native";
 
 interface MusicScreenProps {
   navigation: any;
@@ -23,7 +25,7 @@ interface MusicScreenProps {
 export const FavoriteScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
   const HeaderLeft = () => {
     return (
-      <Pressable onPress={() => navigation.navigate("MusicScreen")}>
+      <Pressable onPress={() => navigation.navigate("HomeScreen")}>
         <BackVector color={colors.white} />
       </Pressable>
     );
@@ -38,7 +40,6 @@ export const FavoriteScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
       />
     );
   };
-
   return (
     <ScrollView contentContainerStyle={styles.root}>
       <Header left={<HeaderLeft />} />
@@ -98,6 +99,7 @@ const styles = StyleSheet.create({
     minHeight: "100%",
     minWidth: "100%",
     paddingBottom: 40,
+    paddingTop: 46,
   },
   cardTitle: {
     gap: 2,
