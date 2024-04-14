@@ -29,12 +29,11 @@ export const HomeScreen = () => {
 
   const renderCards = ({ item, index }: { item: ICard; index: number }) => {
     return (
-      
       <Card
         key={index}
         title={item.title}
         url={item.url}
-        // onPress={fetchSongs}
+        onPress={fetchSongs}
       />
     );
   };
@@ -64,11 +63,6 @@ export const HomeScreen = () => {
     console.log("render HomeScreen");
     fetchSongs();
   }, [value]);
-
-  // useEffect(() => {
-  //   console.log('render HomeScreen');
-  //   fetchSongs();
-  // }, []);
 
   return (
     <ScrollView

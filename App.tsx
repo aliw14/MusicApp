@@ -8,6 +8,7 @@ import { FavoriteScreen } from "./src/screens/Favorite.Screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { colors } from "./src/theme/colors";
 
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const screenOptions = {

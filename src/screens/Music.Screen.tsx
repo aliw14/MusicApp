@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Pressable, Image, Modal } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  Modal,
+  Alert,
+} from "react-native";
 import React, { useRef, useState } from "react";
 import { Header } from "../components/Header";
 import LikeVector from "../../assets/vectors/like.svg";
@@ -8,7 +16,6 @@ import PauseVector from "../../assets/vectors/pause.svg";
 import RepeatVector from "../../assets/vectors/repeat.svg";
 import SkipBackVector from "../../assets/vectors/skip_back.svg";
 import SkipForwardVector from "../../assets/vectors/skip_forward.svg";
-
 import { colors } from "../theme/colors";
 import { songs } from "../mocks/songs.mock";
 import { ProgressBar } from "../components/ProgressBar";
@@ -16,6 +23,8 @@ import { ProgressBar } from "../components/ProgressBar";
 interface MusicScreenProps {
   navigation: any;
 }
+const showAlert = () =>
+  Alert.alert("Favorites Alert", "Favorites do not work yet");
 export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
   const HeaderLeft = () => {
     return (
@@ -27,7 +36,7 @@ export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
 
   const HeaderRight = () => {
     return (
-      <Pressable onPress={() => console.log("pressed")}>
+      <Pressable onPress={showAlert}>
         <LikeVector color={colors.gray} />
       </Pressable>
     );
@@ -52,47 +61,47 @@ export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
   };
 
   return (
-      <View style={styles.root}>
-        <Header
-          left={<HeaderLeft />}
-          right={<HeaderRight />}
-          title="Ophelia by Steven"
-        />
-        <View style={styles.main}>
-          <View style={styles.wrapper}>
-            <Image
-              resizeMode="cover"
-              source={{
-                uri: songs[0].url,
-              }}
-              style={styles.image}
-            />
-            <View style={styles.imageTexts}>
-              <Text style={styles.title}>{songs[0].title}</Text>
-              <Text style={styles.singer}>{songs[0].singer}</Text>
-            </View>
-            <View style={styles.controllers}>
-              <ProgressBar time={185} currentTime={120} />
-              <View style={styles.buttons}>
-                <ShuffleVector color={colors.white} />
-                <SkipBackVector color={colors.white} />
-                <Pressable onPress={onController} style={styles.pause}>
-                  {play ? <PauseVector color={colors.white} /> : <LikeVector />}
-                </Pressable>
-                <SkipForwardVector color={colors.white} />
-                <RepeatVector color={colors.white} />
-              </View>
-            </View>
-            <View
-              style={{
-                height: 81,
-                width: "100%",
-                backgroundColor: "grey",
-              }}
-            />
+    <View style={styles.root}>
+      <Header
+        left={<HeaderLeft />}
+        right={<HeaderRight />}
+        title="Ophelia by Steven"
+      />
+      <View style={styles.main}>
+        <View style={styles.wrapper}>
+          <Image
+            resizeMode="cover"
+            source={{
+              uri: songs[0].url,
+            }}
+            style={styles.image}
+          />
+          <View style={styles.imageTexts}>
+            <Text style={styles.title}>{songs[0].title}</Text>
+            <Text style={styles.singer}>{songs[0].singer}</Text>
           </View>
+          <View style={styles.controllers}>
+            <ProgressBar time={185} currentTime={120} />
+            <View style={styles.buttons}>
+              <ShuffleVector color={colors.white} />
+              <SkipBackVector color={colors.white} />
+              <Pressable onPress={onController} style={styles.pause}>
+                {play ? <PauseVector color={colors.white} /> : <LikeVector />}
+              </Pressable>
+              <SkipForwardVector color={colors.white} />
+              <RepeatVector color={colors.white} />
+            </View>
+          </View>
+          <View
+            style={{
+              height: 81,
+              width: "100%",
+              backgroundColor: "grey",
+            }}
+          />
         </View>
       </View>
+    </View>
   );
 };
 
