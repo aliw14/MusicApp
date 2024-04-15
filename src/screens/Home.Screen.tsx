@@ -21,8 +21,10 @@ import { Alert } from "react-native";
 
 const showAlert = () =>
   Alert.alert("Notifications Alert", "Notifications do not work yet");
-
-export const HomeScreen = () => {
+interface HomeScreenProps {
+  navigation: any;
+}
+export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [value, setValue] = useState<string>("");
   const [songs, setSongs] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -50,7 +52,9 @@ export const HomeScreen = () => {
         key={index}
         title={item.title}
         url={item.artist.picture_big}
-        onPress={fetchSongs}
+        onPress={() => {
+          navigation.navigate("MusicScreen");
+        }}
       />
     );
   };
@@ -69,6 +73,9 @@ export const HomeScreen = () => {
         horizontal
         {...item}
         url={item.artist.picture_big}
+        onPress={() => {
+          navigation.navigate("MusicScreen");
+        }}
       />
     );
   };
