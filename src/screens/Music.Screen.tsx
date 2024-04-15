@@ -29,7 +29,7 @@ const showAlert = () =>
 export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
   const HeaderLeft = () => {
     return (
-      <Pressable onPress={() => navigation.navigate("HomeScreen")}>
+      <Pressable onPress={() => navigation.goBack("HomeScreen")}>
         <BackVector color={colors.white} />
       </Pressable>
     );
