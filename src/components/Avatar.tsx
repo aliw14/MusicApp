@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import React from 'react';
-import Ring from '../../assets/vectors/ring.svg';
+import Ring from '../../assets/vectors/ring.svg'; // Assuming this is used elsewhere
 import { colors } from '../theme/colors';
 
 interface IAvatar {
@@ -17,18 +17,21 @@ interface IAvatar {
   style?: StyleProp<ViewStyle>;
 }
 
+const defaultImageUrl =
+  'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png';
+
 export const Avatar: React.FC<IAvatar> = ({ caption, url, title, style }) => {
+  const imageUrl = url || defaultImageUrl;
+
   return (
     <View style={[styles.root, style]}>
-      {url ? (
-        <Image
-          style={styles.image}
-          resizeMode="cover"
-          source={{
-            uri: url,
-          }}
-        />
-      ) : null}
+      <Image
+        style={styles.image}
+        resizeMode="cover"
+        source={{
+          uri: imageUrl,
+        }}
+      />
       <View>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.caption}>{caption}</Text>

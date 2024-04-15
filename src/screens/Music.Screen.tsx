@@ -16,6 +16,7 @@ import PauseVector from "../../assets/vectors/pause.svg";
 import RepeatVector from "../../assets/vectors/repeat.svg";
 import SkipBackVector from "../../assets/vectors/skip_back.svg";
 import SkipForwardVector from "../../assets/vectors/skip_forward.svg";
+import PlayVector from "../../assets/vectors/play.svg";
 import { colors } from "../theme/colors";
 import { songs } from "../mocks/songs.mock";
 import { ProgressBar } from "../components/ProgressBar";
@@ -85,8 +86,12 @@ export const MusicScreen: React.FC<MusicScreenProps> = ({ navigation }) => {
             <View style={styles.buttons}>
               <ShuffleVector color={colors.white} />
               <SkipBackVector color={colors.white} />
-              <Pressable onPress={onController} style={styles.pause}>
-                {play ? <PauseVector color={colors.white} /> : <LikeVector />}
+              <Pressable onPress={onController} style={styles.play}>
+                {play ? (
+                  <PauseVector color={colors.white} />
+                ) : (
+                  <PlayVector color={colors.white} width={45} height={50} />
+                )}
               </Pressable>
               <SkipForwardVector color={colors.white} />
               <RepeatVector color={colors.white} />
@@ -112,6 +117,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 17,
     gap: 32,
     paddingTop: 46,
+  },
+  play: {
+    color: colors.white,
+    width: 75,
+    height: 75,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.primary,
+    borderRadius: 99,
   },
   pause: {
     width: 75,

@@ -14,25 +14,42 @@ import { activeIndex, standardHitSlop } from "../theme/standard";
 import { colors } from "../theme/colors";
 import { Input } from "../components/Input";
 import { Card, ICard } from "../components/Card";
-import { songs } from "../mocks/songs.mock";
+import fetchSongs from "../api/songsFromApi";
 import { FlashList } from "@shopify/flash-list";
 import { CommonStyles } from "../theme/common";
-import { Alert, Modal, Pressable } from "react-native";
+import { Alert } from "react-native";
 
 const showAlert = () =>
   Alert.alert("Notifications Alert", "Notifications do not work yet");
 
 export const HomeScreen = () => {
   const [value, setValue] = useState<string>("");
-  const [data, setData] = useState<any>(null);
+  const [songs, setSongs] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const renderCards = ({ item, index }: { item: ICard; index: number }) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const songs = await fetchSongs();
+      setSongs(songs);
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Error ", error);
+      setLoading(false);
+    }
+  };
+
+  const renderCards = ({ item, index }: { item: any; index: number }) => {
     return (
       <Card
         key={index}
         title={item.title}
-        url={item.url}
+        url={item.artist.picture_big}
         onPress={fetchSongs}
       />
     );
@@ -42,27 +59,19 @@ export const HomeScreen = () => {
     item,
     index,
   }: {
-    item: ICard;
+    item: any;
     index: number;
   }) => {
-    return <Card size="s" key={index} horizontal {...item} />;
-  };
-
-  const fetchSongs = async () => {
-    setLoading(true);
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/1"
+    return (
+      <Card
+        size="s"
+        key={index}
+        horizontal
+        {...item}
+        url={item.artist.picture_big}
+      />
     );
-
-    const res = await response.json();
-    setData(res);
-    setLoading(false);
   };
-
-  useEffect(() => {
-    console.log("render HomeScreen");
-    fetchSongs();
-  }, [value]);
 
   return (
     <ScrollView
@@ -74,9 +83,9 @@ export const HomeScreen = () => {
         <Header
           left={
             <Avatar
-              title="Xeyyam Kerimov"
+              title="Ali Mammadov"
               caption="Gold Member"
-              url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg"
+              // url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg"
             />
           }
           right={
@@ -156,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontFamily: "Nunito-Bold",
+    fontFamily: "Nunito-SemiBold",
     fontSize: 26,
     width: "50%",
     color: colors.white,
